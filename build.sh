@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Where do you want to put nc in to
-PREFIX=/usr/local
+PREFIX=/build/usr/local
 # Your libbsd install prefix
-BSD_PREFIX=/usr/local
+BSD_PREFIX=/home/wzy/workspace/app/libbsd/libbsd-0.8.5/build
 
-make CFLAGS="$CFLAGS -I$BSD_PREFIX/include" LDFLAGS="$LDFLAGS -lbsd -L$BSD_PREFIX/lib"
+CC=arm-linux-gcc
+make CFLAGS="$CFLAGS -I$BSD_PREFIX/include" LDFLAGS="$LDFLAGS -lbsd -L$BSD_PREFIX/lib -L/usr/local/lib -L/usr/lib"
 
 if [ "$1" == "install" ]; then
   install -Dm0755 nc $PREFIX/bin/nc

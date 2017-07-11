@@ -1456,6 +1456,7 @@ set_common_sockopts(int s, int af)
 #ifndef IPV6_TCLASS
 // Advanced API (RFC3542) (2)
 #define IPV6_TCLASS 67
+#endif
 		if (af == AF_INET6) {
 			proto = IPPROTO_IPV6;
 			option = IPV6_TCLASS;
@@ -1535,10 +1536,10 @@ report_connect(const struct sockaddr *sa, socklen_t salen)
 	char remote_port[NI_MAXSERV];
 	int herr;
 	int flags = NI_NUMERICSERV;
-	
+
 	if (nflag)
 		flags |= NI_NUMERICHOST;
-	
+
 	if ((herr = getnameinfo(sa, salen,
 	    remote_host, sizeof(remote_host),
 	    remote_port, sizeof(remote_port),
@@ -1548,7 +1549,7 @@ report_connect(const struct sockaddr *sa, socklen_t salen)
 		else
 			errx(1, "getnameinfo: %s", gai_strerror(herr));
 	}
-	
+
 	fprintf(stderr,
 	    "Connection from %s %s "
 	    "received!\n", remote_host, remote_port);

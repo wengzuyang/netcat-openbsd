@@ -7,7 +7,7 @@ LIBS=  -lresolv
 OBJS=  $(SRCS:.c=.o)
 CFLAGS=  -g -O2
 LDFLAGS=  -Wl,--no-add-needed
-
+CC=arm-linux-gcc
 all: nc
 nc: $(OBJS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LIBS) -o nc
